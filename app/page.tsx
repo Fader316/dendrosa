@@ -233,6 +233,31 @@ export default function LandingPage() {
               View Demo
             </Button>
           </div>
+          {/* Waitlist Form */}
+<div className="max-w-md mx-auto mt-8">
+  <p className="text-zinc-400 text-sm text-center mb-3">
+    Be among the first to try PortScope.
+  </p>
+  <form 
+    action="https://formspree.io/f/maewkepy" 
+    method="POST"
+    className="flex flex-col sm:flex-row gap-3"
+  >
+    <input
+      type="email"
+      name="email"
+      placeholder="your@email.com"
+      required
+      className="flex-1 h-12 px-4 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500 transition-colors"
+    />
+    <button 
+      type="submit"
+      className="h-12 px-6 bg-cyan-500 hover:bg-cyan-400 rounded-lg font-semibold transition-colors whitespace-nowrap text-zinc-900"
+    >
+      Join the beta
+    </button>
+  </form>
+</div>
         </motion.div>
         
         <motion.div 
