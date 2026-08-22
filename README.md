@@ -1,33 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PortScope 🚀
 
-## Getting Started
+**Monitor your servers and ports 24/7** - Simple uptime monitoring for developers and homelab enthusiasts.
 
-First, run the development server:
+🔗 **Live Demo:** https://portscope-five.vercel.app
 
+## 📋 About
+
+PortScope is a lightweight monitoring tool that helps you keep track of your servers, ports, and services. Get instant alerts when something goes down.
+
+## ✨ Features
+
+- 🖥️ Monitor multiple servers simultaneously
+- ️ Real-time uptime tracking
+-  Email notifications via Formspree
+- 📊 Analytics with Plausible
+- 🎨 Modern, responsive UI with TailwindCSS
+- ⚡ Built with Next.js 16 and TypeScript
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 16, TypeScript, TailwindCSS
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Deployment:** Vercel
+- **Forms:** Formspree
+- **Analytics:** Plausible
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+git clone https://github.com/Fader316/portscope.git
+cd portscope
 
 ## Deploy on Vercel
 
