@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { 
-  Activity, Server, Shield, Bell, MessageSquare, 
+  Activity, Server, Home, Gamepad2, Shield, Bell, MessageSquare, 
   Lock, LayoutDashboard, Zap, ChevronRight, Code2, 
   BookOpen, Mail, Terminal, Globe, CheckCircle2, AlertCircle 
 } from "lucide-react";
@@ -277,19 +277,85 @@ export default function LandingPage() {
     >
       Join the beta
     </button>
-  </form>
-</div>
-        </motion.div>
-        
-        <motion.div 
-  id="demo"
-  className="scroll-mt-24"
-  initial={{ opacity: 0, y: 40 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 0.2 }}
->
-  <DashboardMockup />
-</motion.div>
+            </form>
+        </div>
+      </motion.div>
+
+      {/* --- NUEVA SECCIÓN: PARA QUIÉN ES DENDROSA --- */}
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="mt-16"
+      >
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-3">
+              Built for the modern infrastructure
+            </h2>
+            <p className="text-zinc-400">
+              Designed for developers, sysadmins and tech enthusiasts who need reliable monitoring
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* VPS Owners */}
+            <div className="p-6 bg-zinc-800/50 border border-zinc-700/50 rounded-xl hover:border-purple-500/50 transition-colors group">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Server size={24} className="text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-2">VPS Owners</h3>
+              <p className="text-sm text-zinc-400">
+                Monitor your cloud servers and VPS instances across multiple providers
+              </p>
+            </div>
+
+            {/* Homelab */}
+            <div className="p-6 bg-zinc-800/50 border border-zinc-700/50 rounded-xl hover:border-purple-500/50 transition-colors group">
+              <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Home size={24} className="text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-2">Homelab</h3>
+              <p className="text-sm text-zinc-400">
+                Keep track of your self-hosted services and home infrastructure
+              </p>
+            </div>
+
+            {/* Game Servers */}
+            <div className="p-6 bg-zinc-800/50 border border-zinc-700/50 rounded-xl hover:border-purple-500/50 transition-colors group">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Gamepad2 size={24} className="text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-2">Game Servers</h3>
+              <p className="text-sm text-zinc-400">
+                Ensure your game servers stay online for your community
+              </p>
+            </div>
+
+            {/* Developers */}
+            <div className="p-6 bg-zinc-800/50 border border-zinc-700/50 rounded-xl hover:border-purple-500/50 transition-colors group">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Code2 size={24} className="text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-2">Developers</h3>
+              <p className="text-sm text-zinc-400">
+                Track APIs, databases and microservices in real-time
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+      {/* --- FIN DE LA NUEVA SECCIÓN --- */}
+
+      <motion.div 
+        id="demo"
+        className="scroll-mt-24"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <DashboardMockup />
+      </motion.div>
       </Section>
 
       {/* Social Proof */}
