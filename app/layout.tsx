@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "PortScope - Monitor your servers and ports 24/7",
-  description: "Simple uptime monitoring for developers and homelab enthusiasts.",
+  title: "Dendrosa - Monitor. Detect. Keep Online.",
+  description: "Dendrosa monitors your servers, ports and services and helps you understand what may be causing an outage.",
 };
 import Script from "next/script";
 export default function RootLayout({
