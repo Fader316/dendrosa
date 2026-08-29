@@ -7,14 +7,17 @@ import {
   Lock, LayoutDashboard, Zap, ChevronRight, Code2, 
   BookOpen, Mail, Terminal, Globe, CheckCircle2, AlertCircle 
 } from "lucide-react";
+import Image from "next/image";
 
 // --- Componentes Reutilizables ---
 
-const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <section className={`relative px-4 sm:px-6 lg:px-8 py-24 max-w-7xl mx-auto ${className}`}>
-    {children}
-  </section>
-);
+const Section = ({ children, className = "", id }: { children: React.ReactNode, className?: string, id?: string }) => {
+  return (
+    <section id={id} className={`relative px-4 sm:px-6 lg:px-8 py-24 max-w-7xl mx-auto ${className}`}>
+      {children}
+    </section>
+  );
+};
 
 const Badge = ({ children }: { children: React.ReactNode }) => (
   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6">
@@ -177,9 +180,9 @@ const DashboardMockup = () => (
 
 export default function LandingPage() {
   const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } }
+};
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 selection:bg-cyan-500/30 selection:text-cyan-200">
@@ -191,47 +194,65 @@ export default function LandingPage() {
       </div>
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-zinc-950/70 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-2">
-              <Activity className="text-cyan-400" size={24} />
-              <span className="text-xl font-bold tracking-tight text-zinc-100">PortScope</span>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">Features</a>
-              <a href="#pricing" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">Pricing</a>
-              <a href="#" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">Docs</a>
-            </div>
-            <div className="flex items-center space-x-4">
-              <a href="#" className="hidden sm:block text-sm text-zinc-400 hover:text-zinc-100 transition-colors">Login</a>
-              <Button variant="primary" className="text-sm px-4 py-2">Start Free</Button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-sm">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between h-16">
+      <div className="flex items-center space-x-3">
+    <Image 
+  src="/dendrosa-logo.png" 
+  alt="Dendrosa Logo" 
+  width={40} 
+  height={40} 
+  className="rounded"
+/>
+<div className="flex flex-col items-start">
+  <span className="text-3xl font-bold leading-tight tracking-[0.1em] w-[240px]">
+    <span className="text-zinc-100">DENDROS</span>
+    <span className="text-purple-500">Λ</span>
+  </span>
+  <span className="text-[9px] text-zinc-500 uppercase leading-tight mt-0.5 tracking-[0.18em] w-[240px]">
+    Monitor. Detect. Keep Online.
+  </span>
+</div>
+</div>
+      
+      <div className="hidden md:flex items-center space-x-8">
+        <a href="#features" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">Features</a>
+        <a href="#pricing" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">Pricing</a>
+        <a href="#" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">Docs</a>
+      </div>
+      
+      <div className="flex items-center space-x-4">
+        <a href="#" className="hidden sm:block text-sm text-zinc-400 hover:text-zinc-100 transition-colors">Login</a>
+        <Button variant="primary" className="text-sm px-4 py-2">Start Free</Button>
+      </div>
+    </div>
+  </div>
+</nav>
 
       {/* Hero Section */}
       <Section className="pt-32 pb-16 text-center">
         <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
           <Badge>Now in Public Beta</Badge>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-100 mb-6">
-            Monitor your servers <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
-              and ports 24/7
-            </span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-lg text-zinc-400 mb-10 leading-relaxed">
-            Get instant alerts when your services go offline. Simple, powerful uptime monitoring 
-            built specifically for developers and homelab enthusiasts.
-          </p>
+       <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-100 mb-6">
+  Know when something fails.
+  <br className="hidden sm:block" />
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
+    Know what to check next.
+  </span>
+</h1>
+          <p className="max-w-2xl mx-auto text-lg text-zinc-400 mb-10">
+  Dendrosa monitors your servers, ports and services and helps you understand what may be causing an outage. Built for developers, VPS owners and homelab enthusiasts.
+</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Button variant="primary" className="w-full sm:w-auto h-12 px-8 text-base">
-              Start Free <ChevronRight size={16} className="ml-2" />
-            </Button>
-            <Button variant="secondary" className="w-full sm:w-auto h-12 px-8 text-base">
-              View Demo
-            </Button>
+  Start Free
+</Button>
+            <a href="#demo" className="w-full sm:w-auto">
+  <Button variant="secondary" className="w-full h-12 px-8 text-base">
+    View Demo
+  </Button>
+</a>
           </div>
           {/* Waitlist Form */}
 <div className="max-w-md mx-auto mt-8">
@@ -261,41 +282,22 @@ export default function LandingPage() {
         </motion.div>
         
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <DashboardMockup />
-        </motion.div>
+  id="demo"
+  className="scroll-mt-24"
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+>
+  <DashboardMockup />
+</motion.div>
       </Section>
 
       {/* Social Proof */}
-      <Section className="py-12 border-y border-zinc-800/50 bg-zinc-950/50">
-        <div className="text-center mb-10">
-          <p className="text-sm font-medium text-zinc-500 uppercase tracking-widest">Trusted by developers worldwide</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-          {/* Fake Logos using Text/Icons for reliability */}
-          {["Nexus Labs", "CloudForge", "DevStream", "HomeStack"].map((name, i) => (
-            <div key={i} className="flex items-center space-x-2 text-xl font-bold text-zinc-400">
-              <Globe size={20} />
-              <span>{name}</span>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          {[
-            { label: "Uptime Guarantee", value: "99.9%" },
-            { label: "Checks per Day", value: "10k+" },
-            { label: "Alert Delivery", value: "< 5s" },
-          ].map((stat, i) => (
-            <div key={i} className="p-4">
-              <div className="text-3xl font-bold text-zinc-100 mb-1">{stat.value}</div>
-              <div className="text-sm text-zinc-500">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </Section>
+<Section className="py-12 border-y border-zinc-800/50 bg-zinc-950/50">
+  <div className="text-center">
+    <p className="text-sm font-medium text-zinc-500 uppercase tracking-widest">Built for developers, VPS owners & homelab enthusiasts</p>
+  </div>
+</Section>
 
       {/* Features Section */}
       <Section id="features" className="py-24">
@@ -357,8 +359,8 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-zinc-100">99.98%</div>
-                  <div className="text-xs text-zinc-500">Last 30 days</div>
+                  <div className="text-2xl font-bold text-zinc-100">--</div>
+                  <div className="text-xs text-zinc-500">Your uptime</div>
                 </div>
               </div>
               
@@ -378,34 +380,45 @@ export default function LandingPage() {
         </div>
       </Section>
 
-      {/* Pricing Section */}
-      <Section id="pricing" className="py-24">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-100 mb-4">Simple, transparent pricing</h2>
-          <p className="text-zinc-400">Start for free, scale as your infrastructure grows. No hidden fees.</p>
+     {/* Pricing Section */}
+<Section id="pricing" className="py-24">
+  <div className="text-center max-w-3xl mx-auto mb-16">
+    <h2 className="text-3xl sm:text-4xl font-bold text-zinc-100 mb-4">Free during Beta</h2>
+    <p className="text-zinc-400">PortScope is currently in public beta. All features are free to use while we build and improve the platform.</p>
+  </div>
+  <div className="max-w-md mx-auto">
+    <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 text-center">
+      <div className="text-sm font-medium text-purple-400 uppercase tracking-wider mb-2">Public Beta</div>
+      <div className="text-5xl font-bold text-zinc-100 mb-2">$0</div>
+      <div className="text-zinc-500 mb-8">Free while in beta</div>
+      <div className="space-y-3 text-left">
+        <div className="flex items-center space-x-3">
+          <CheckCircle2 className="text-purple-400 flex-shrink-0" size={20} />
+          <span className="text-zinc-300">Unlimited monitors</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <PricingCard 
-            title="Free"
-            price="0"
-            period="/month"
-            features={["3 monitors", "5 minute check intervals", "Basic email alerts", "7-day data retention", "Community support"]}
-          />
-          <PricingCard 
-            title="Pro"
-            price="9"
-            period="/month"
-            highlighted={true}
-            features={["50 monitors", "1 minute check intervals", "Telegram & Discord alerts", "SSL expiration monitoring", "30-day data retention", "Priority support"]}
-          />
-          <PricingCard 
-            title="Business"
-            price="29"
-            period="/month"
-            features={["Unlimited monitors", "30 second check intervals", "Advanced analytics & API", "Team access & SSO", "1-year data retention", "Dedicated account manager"]}
-          />
+        <div className="flex items-center space-x-3">
+          <CheckCircle2 className="text-purple-400 flex-shrink-0" size={20} />
+          <span className="text-zinc-300">Email, Telegram & Discord alerts</span>
         </div>
-      </Section>
+        <div className="flex items-center space-x-3">
+          <CheckCircle2 className="text-purple-400 flex-shrink-0" size={20} />
+          <span className="text-zinc-300">SSL expiration monitoring</span>
+        </div>
+        <div className="flex items-center space-x-3">
+          <CheckCircle2 className="text-purple-400 flex-shrink-0" size={20} />
+          <span className="text-zinc-300">Dashboard & analytics</span>
+        </div>
+        <div className="flex items-center space-x-3">
+          <CheckCircle2 className="text-purple-400 flex-shrink-0" size={20} />
+          <span className="text-zinc-300">Direct support from the founder</span>
+        </div>
+      </div>
+      <Button variant="primary" className="w-full mt-8 h-12">
+        Join the Beta
+      </Button>
+    </div>
+  </div>
+</Section>
 
       {/* Final CTA */}
       <Section className="py-24">
@@ -414,70 +427,82 @@ export default function LandingPage() {
           <div className="absolute -inset-20 bg-cyan-500/5 blur-3xl pointer-events-none" />
           
           <h2 className="relative text-3xl sm:text-5xl font-bold text-zinc-100 mb-6">
-            Start monitoring your infrastructure today
-          </h2>
-          <p className="relative text-zinc-400 max-w-xl mx-auto mb-10 text-lg">
-            Join thousands of developers who trust PortScope to keep their homelabs and production environments online.
-          </p>
-          <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="primary" className="h-14 px-8 text-lg w-full sm:w-auto">
-              Join the Beta
-            </Button>
-            <Button variant="outline" className="h-14 px-8 text-lg w-full sm:w-auto">
-              Contact Sales
-            </Button>
-          </div>
+  Start monitoring your infrastructure today
+</h2>
+<p className="relative text-zinc-400 max-w-xl mx-auto mb-10 text-lg">
+  PortScope is in public beta. Be among the first to try it and help shape the future of uptime monitoring.
+</p>
+<div className="relative flex flex-col sm:flex-row items-center justify-center gap-4">
+  <Button variant="primary" className="h-14 px-8 text-lg w-full sm:w-auto">
+    Join the Beta
+  </Button>
+  <a href="#demo" className="w-full sm:w-auto">
+  <Button variant="secondary" className="h-14 px-8 text-lg w-full">
+    View Demo
+  </Button>
+</a>
+</div>
         </div>
       </Section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-800/50 bg-zinc-950 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-            <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center space-x-2 mb-4">
-                <Activity className="text-cyan-400" size={20} />
-                <span className="text-lg font-bold text-zinc-100">PortScope</span>
-              </div>
-              <p className="text-sm text-zinc-500">
-                Reliable uptime monitoring for the modern developer.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-zinc-100 mb-4">Product</h4>
-              <ul className="space-y-3 text-sm text-zinc-500">
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Changelog</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-zinc-100 mb-4">Resources</h4>
-              <ul className="space-y-3 text-sm text-zinc-500">
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">API Reference</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Status Page</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-zinc-100 mb-4">Company</h4>
-              <ul className="space-y-3 text-sm text-zinc-500">
-                <li><a href="#" className="hover:text-cyan-400 transition-colors flex items-center"><Code2 size={14} className="mr-2"/> Github</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors flex items-center"><Mail size={14} className="mr-2"/> Contact</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="pt-8 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-600">
-            <p>© 2026 PortScope. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-zinc-400">Terms</a>
-              <a href="#" className="hover:text-zinc-400">Privacy</a>
-              <a href="#" className="hover:text-zinc-400">Cookies</a>
-            </div>
-          </div>
+<footer className="border-t border-zinc-800/50 bg-zinc-950 py-12">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-12">
+      <div className="col-span-2 md:col-span-1">
+        <div className="flex items-center space-x-3 mb-4">
+          <Image 
+            src="/dendrosa-logo.png" 
+            alt="Dendrosa Logo" 
+            width={32} 
+            height={32} 
+            className="rounded"
+          />
+          <span className="text-lg font-bold tracking-[0.1em]">
+            <span className="text-zinc-100">DENDROS</span>
+            <span className="text-purple-500">Λ</span>
+          </span>
         </div>
-      </footer>
+        <p className="text-sm text-zinc-500">
+          Reliable uptime monitoring for the modern developer.
+        </p>
+      </div>
+      <div>
+        <h4 className="text-sm font-semibold text-zinc-100 mb-4">Product</h4>
+        <ul className="space-y-3 text-sm text-zinc-500">
+          <li><a href="#features" className="hover:text-purple-400 transition-colors">Features</a></li>
+          <li><a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="text-sm font-semibold text-zinc-100 mb-4">Connect</h4>
+        <ul className="space-y-3 text-sm text-zinc-500">
+          <li>
+            <a 
+              href="https://github.com/fader316/dendrosa" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-purple-400 transition-colors flex items-center"
+            >
+              <Code2 size={14} className="mr-2"/> GitHub
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#" 
+              className="hover:text-purple-400 transition-colors flex items-center"
+            >
+              <Mail size={14} className="mr-2"/> Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div className="pt-8 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-600">
+      <p>© 2026 Dendrosa. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
     </div>
   );
 }
